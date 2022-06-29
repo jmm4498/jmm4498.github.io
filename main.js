@@ -111,12 +111,20 @@ function onEvent(event) {
     if(document.getElementById('srctile').checked) {
         map[x][y] = 's';
         color = 'blue';
+        if(setStart) {
+            map[sx][sy] = '_'; 
+            draw(sx, sy, 'white');
+        }
         sx = x;
         sy = y;
         setStart = true;
     } else if(document.getElementById('dsttile').checked) {
         map[x][y] = 'd';
         color = 'yellow';
+        if(setDestination) {
+            map[dx][dy] = '_';
+            draw(dx, dy, 'white');
+        }
         dx = x;
         dy = y;
         setDestination = true;
@@ -423,6 +431,7 @@ async function drawWithQueue() {
 }
 
 drawAll();
+
 let startButton = document.getElementById("startButton");
 let resetButton = document.getElementById("resetButton");
 
