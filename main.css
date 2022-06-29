@@ -1,6 +1,5 @@
 .sidebar-select {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 200px; /* Set the width of the sidebar */
+    width: 100%; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -10,7 +9,7 @@
     padding-top: 20px;
 }
 .buttonsTable {
-    padding-top: 100px;
+    padding-top: 50px;
     padding-left: 10px;
 }
 
@@ -62,6 +61,15 @@
 }
 
 .main {
-    margin-left: 200px;
+    margin-top: 150px;
 }
+
+#canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 
