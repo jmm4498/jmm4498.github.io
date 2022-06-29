@@ -13,9 +13,16 @@
     margin-right: auto;
 }
 
-.select-table {
+.select-table, .tile-table {
   margin-left: auto;
   margin-right: auto;
+
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
 }
 
 .buttonclass {
