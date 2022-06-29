@@ -108,26 +108,22 @@ function onEvent(event) {
     var x = Math.floor(X / tileSize);
     var y = Math.floor(Y / tileSize);
 
-
-    var select = document.getElementById("tiletype");
-    var value = select.options[select.selectedIndex].value;
-
-    if(value == "src") {
+    if(document.getElementById('srctile').checked) {
         map[x][y] = 's';
         color = 'blue';
         sx = x;
         sy = y;
         setStart = true;
-    } else if(value == "dst") {
+    } else if(document.getElementById('dsttile').checked) {
         map[x][y] = 'd';
         color = 'yellow';
         dx = x;
         dy = y;
         setDestination = true;
-    } else if(value == "wal"){
+    } else if(document.getElementById('walltile').checked) {
         map[x][y] = '|';
         color = 'black';
-    } else if(value == "hil") {
+    } else if(document.getElementById('hilltile').checked) {
         map[x][y] = 'h';
         color = 'purple';
     }
@@ -143,10 +139,7 @@ determine if a click and drag has been performed, and colors the tiles
 that the mouse will move over, if the mouse is still down
 */
 function onDrag(event) {
-    var select = document.getElementById("tiletype");
-    var value = select.options[select.selectedIndex].value;
-
-    if(mousedown && value == "wal") {
+    if(mousedown && document.getElementById('walltile').checked) {
         var rect=canvas.getBoundingClientRect();
         var X= event.x-rect.left;                
         var Y= event.y-rect.top;
@@ -439,15 +432,12 @@ startButton.addEventListener('click', event => {
 
     var ret;
 
-    var select = document.getElementById("algtype");
-    var value = select.options[select.selectedIndex].value;
-
-    if(value != "0" && setStart && setDestination) {
-        if(value == "dji") {
+    if(setStart && setDestination) {
+        if(document.getElementById('dji').checked) {
             ret = djikstra(sx, sy, dx, dy);
-        } else if(value == "bre") {
+        } else if(document.getElementById('bre').checked) {
             ret = bfs(sx, sy, dx, dy);
-        } else if(value == "dep") {
+        } else if(document.getElementById('dep').checked) {
             ret = dfs(sx, sy, dx, dy);
         }
 

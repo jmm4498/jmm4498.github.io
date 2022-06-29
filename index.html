@@ -9,19 +9,38 @@
     </head>
     <body>
         <div class="sidebar-select">
-            <select id="algtype">
-                <option value="0">Select an Algorithm:</option>
-                <option value="dji">Djikstra's Algorithm</option>
-                <option value="bre">Breadth-First Search</option>
-                <option value="dep">Depth-First Search</option>
-              </select>
-              <select id="tiletype">
-                  <option value="0">Select a tile:</option>
-                  <option value="src">Start</option>
-                  <option value="dst">Destination</option>
-                  <option value="wal">Wall</option>
-                  <option value="hil">Hill</option>
-              </select>
+            <table>
+                <tr>
+                    <td>
+                        <input type="radio" id="dji" name="alg" value="dji">
+                        <label for="dji">Djikstra's Algorithm</label><br>
+                    </td>
+                    <td>
+                        <input type="radio" id="bre" name="alg" value="bre">
+                        <label for="bre">Breadth-First Search</label><br>
+                    </td>
+                    <td>
+                        <input type="radio" id="dep" name="alg" value="dep">
+                        <label for="dep">Depth-First Search</label><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" id="srctile" name="til" value="src">
+                        <label for="src">Start</label><br>
+                    </td>
+                        <input type="radio" id="dsttile" name="til" value="dst">
+                        <label for="dst">Destination</label><br>
+                    <td>
+                        <input type="radio" id="walltile" name="til" value="wal">
+                        <label for="wal">Wall</label><br>
+                    </td>
+                    <td>
+                        <input type="radio" id="hilltile" name="til" value="hil">
+                        <label for="hil">Hill</label><br>
+                    </td>
+                </tr>
+            </table>
               <table class="buttonsTable">
                 <tr>
                     <td id="startCell">
