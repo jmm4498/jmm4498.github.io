@@ -41,7 +41,6 @@ function init_map() {
             map[i][j] = '_';
         }
     }
-
     initDrawQueue();
 }
 
@@ -111,7 +110,7 @@ function onEvent(event) {
     if(document.getElementById('srctile').checked) {
         map[x][y] = 's';
         color = 'blue';
-        if(setStart) {
+        if(setStart) { // A source was previously chosen, so should be reset
             map[sx][sy] = '_'; 
             draw(sx, sy, 'white');
         }
@@ -121,7 +120,7 @@ function onEvent(event) {
     } else if(document.getElementById('dsttile').checked) {
         map[x][y] = 'd';
         color = 'yellow';
-        if(setDestination) {
+        if(setDestination) { // A destination was previously chosen, so should be reset
             map[dx][dy] = '_';
             draw(dx, dy, 'white');
         }
@@ -135,6 +134,9 @@ function onEvent(event) {
         map[x][y] = 'h';
         color = 'purple';
     }
+
+    //store the x and y in p_x and p_y so that if a drag event with a wall
+    //occurs, it will begin drawing walls properly
     p_x = x;
     p_y = y;
     draw(x, y, color);
@@ -154,6 +156,7 @@ function onDrag(event) {
         var  x= Math.floor(X/tileSize);
         var  y= Math.floor(Y/tileSize);
 
+        //if the last x/y is different than the current, draw over the current
         if(p_x != x && p_y == y || p_y != y && p_x == x) {
             p_x = x;
             p_y = y;

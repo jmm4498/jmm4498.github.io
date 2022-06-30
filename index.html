@@ -8,11 +8,19 @@
         <title> Path Solving Algorithms: Visualized </title>
     </head>
     <body>
+        <div class="sidebar-left">
+            &nbsp; 1) Pick an Algorithm <br> <br>
+            &nbsp; 2) Select a Start and Destination node <br> <br>
+            &nbsp; 3) (Optional) Place wall and hill nodes <br> <br>
+            &nbsp; 4) Press start to visualize! <br> <br> <br>
+            &nbsp; Walls are impossible to traverse over, while hills can be traversed but 
+            at an increased cost compared to a regular node. <br>
+        </div>
         <div class="topbar-select">
             <table class="select-table">
                 <tr>
                     <td>
-                        <input type="radio" id="dji" name="alg" value="dji">
+                        <input type="radio" id="dji" name="alg" value="dji" checked>
                         <label for="dji" class="DjiAlg">Djikstra's Algorithm</label><br>
                     </td>
                     <td>
@@ -28,7 +36,7 @@
             <table class="tile-table">
                 <tr>
                     <td>
-                        <input type="radio" id="srctile" name="til" value="src">
+                        <input type="radio" id="srctile" name="til" value="src" checked>
                         <label for="src" class="SrcTile">Start</label><br>
                     </td>
                     <td>
