@@ -3,14 +3,20 @@
     margin-right: auto;
 }
 
-.select-table, .tile-table {
+.select-table{
   display: block;
-  margin-left: auto;
+  margin-left: 15px;
   margin-right: auto;
   margin-bottom: 10px;
   border-radius: 3px;
   box-sizing: border-box;
   font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+}
+
+.tile-table {
+  display: block;
+  margin-left: 15px;
+  
 }
 
 .select-table td, .tile-table td {
