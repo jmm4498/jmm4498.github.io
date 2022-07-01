@@ -16,7 +16,7 @@
 .select-table, .tile-table {
   margin-left: auto;
   margin-right: auto;
-
+  margin-bottom: 10px;
   background-color: #e1ecf4;
   border-radius: 3px;
   border: 1px solid #7aa7c7;
@@ -88,7 +88,6 @@
   font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 25%; /* Set the width of the sidebar */
-  margin-top: 100px;
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
@@ -97,5 +96,5 @@
   font-size: 18px;
   background-color: #2c5777;
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+  padding-top: 175px;
 }

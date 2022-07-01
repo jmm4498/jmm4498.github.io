@@ -20,36 +20,29 @@
             <table class="select-table">
                 <tr>
                     <td>
-                        <input type="radio" id="dji" name="alg" value="dji" checked>
-                        <label for="dji" class="DjiAlg">Djikstra's Algorithm</label><br>
+                        <button type="button" class="buttonclass" id="alg" name="dji" onclick="setAlgorithm(0)">Djikstra's Algorithm</button>
                     </td>
                     <td>
-                        <input type="radio" id="bre" name="alg" value="bre">
-                        <label for="bre" class="BreAlg">Breadth-First Search</label><br>
+                        <button type="button" class="buttonclass" id="alg" name="bre" onclick="setAlgorithm(1)">Breadth-First Search</button>
                     </td>
                     <td>
-                        <input type="radio" id="dep" name="alg" value="dep">
-                        <label for="dep" class="DepAlg">Depth-First Search</label><br>
+                        <button type="button" class="buttonclass" id="alg" name="dep" onclick="setAlgorithm(2)">Depth-First Search</button>
                     </td>
                 </tr>
             </table>
             <table class="tile-table">
                 <tr>
                     <td>
-                        <input type="radio" id="srctile" name="til" value="src" checked>
-                        <label for="src" class="SrcTile">Start</label><br>
+                        <button type="button" class="buttonclass" id="til" name="src" onclick="setTile(0)">Start</button>
                     </td>
                     <td>
-                        <input type="radio" id="dsttile" name="til" value="dst">
-                        <label for="dst" class="DstTile">Destination</label><br>
+                        <button type="button" class="buttonclass" id="til" name="dst" onclick="setTile(1)">Destination</button>
                     </td>
                     <td>
-                        <input type="radio" id="walltile" name="til" value="wal">
-                        <label for="wal" class="WallTile">Wall</label><br>
+                        <button type="button" class="buttonclass" id="til" name="wal" onclick="setTile(2)">Wall</button>
                     </td>
                     <td>
-                        <input type="radio" id="hilltile" name="til" value="hil">
-                        <label for="hil" class="HillTile">Hill</label><br>
+                        <button type="button" class="buttonclass" id="til" name="hil" onclick="setTile(3)">Hill</button>
                     </td>
                 </tr>
             </table>

@@ -6,8 +6,9 @@ var HEIGHT = 35; //how many tiles tall
 var tileSize = 20; //size of each tile in pixels
 var setStart = false; //true when source tile is chosen
 var mousedown = false; //true when mouse is clicked down
+var algorithm = 0;
+var tile = 0;
 var setDestination = false; //true when destination tile is chosen
-
 var sx; //source tile x
 var sy; //source tile y
 var dx; //destination tile x
@@ -107,7 +108,7 @@ function onEvent(event) {
     var x = Math.floor(X / tileSize);
     var y = Math.floor(Y / tileSize);
 
-    if(document.getElementById('srctile').checked) {
+    if(tile == 0) {
         map[x][y] = 's';
         color = 'blue';
         if(setStart) { // A source was previously chosen, so should be reset
@@ -117,7 +118,7 @@ function onEvent(event) {
         sx = x;
         sy = y;
         setStart = true;
-    } else if(document.getElementById('dsttile').checked) {
+    } else if(tile == 1) {
         map[x][y] = 'd';
         color = 'yellow';
         if(setDestination) { // A destination was previously chosen, so should be reset
@@ -127,10 +128,10 @@ function onEvent(event) {
         dx = x;
         dy = y;
         setDestination = true;
-    } else if(document.getElementById('walltile').checked) {
+    } else if(tile == 2) {
         map[x][y] = '|';
         color = 'black';
-    } else if(document.getElementById('hilltile').checked) {
+    } else if(tile == 3) {
         map[x][y] = 'h';
         color = 'purple';
     }
@@ -149,7 +150,7 @@ determine if a click and drag has been performed, and colors the tiles
 that the mouse will move over, if the mouse is still down
 */
 function onDrag(event) {
-    if(mousedown && document.getElementById('walltile').checked) {
+    if(mousedown && tile == 2) {
         var rect=canvas.getBoundingClientRect();
         var X= event.x-rect.left;                
         var Y= event.y-rect.top;
@@ -394,6 +395,13 @@ function djikstra(x_1, y_1, x_2, y_2) {
 }
 
 
+function setAlgorithm(alg) {
+    algorithm = alg;
+}
+
+function setTile(t) {
+    tile = t;
+}
 /*
 Draws a path to the map from the start tile to destination tile
 Parameters:
@@ -445,11 +453,11 @@ startButton.addEventListener('click', event => {
     var ret;
 
     if(setStart && setDestination) {
-        if(document.getElementById('dji').checked) {
+        if(algorithm == 0) {
             ret = djikstra(sx, sy, dx, dy);
-        } else if(document.getElementById('bre').checked) {
+        } else if(algorithm == 1) {
             ret = bfs(sx, sy, dx, dy);
-        } else if(document.getElementById('dep').checked) {
+        } else if(algorithm == 2) {
             ret = dfs(sx, sy, dx, dy);
         }
 
