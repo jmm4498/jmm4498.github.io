@@ -98,3 +98,23 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 175px;
 }
+
+.sidebar-right {
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 25%; /* Set the width of the sidebar */
+  margin-left: 1080px;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  color: white;
+  font-size: 18px;
+  background-color: #2c5777;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 175px;
+}
+
+#message-tile, #message-alg {
+  padding-left: 15px;
+}

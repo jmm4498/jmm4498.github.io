@@ -394,14 +394,24 @@ function djikstra(x_1, y_1, x_2, y_2) {
     return [false, new Array(0)];
 }
 
+function setMessage(message, id) {
+    let p = document.getElementById(id);
+    p.innerHTML = message;
+}
 
-function setAlgorithm(alg) {
+
+function setAlgorithm(alg, message) {
     algorithm = alg;
+    setMessage(message, 'message-alg');
 }
 
-function setTile(t) {
+function setTile(t, message) {
     tile = t;
+    setMessage(message, 'message-tile');
 }
+
+
+
 /*
 Draws a path to the map from the start tile to destination tile
 Parameters:

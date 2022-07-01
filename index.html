@@ -9,40 +9,48 @@
     </head>
     <body>
         <div class="sidebar-left">
-            &nbsp; 1) Pick an Algorithm <br> <br>
-            &nbsp; 2) Select a Start and Destination node <br> <br>
-            &nbsp; 3) (Optional) Place wall and hill nodes <br> <br>
-            &nbsp; 4) Press start to visualize! <br> <br> <br>
-            &nbsp; Walls are impossible to traverse over, while hills can be traversed but 
-            at an increased cost compared to a regular node. <br>
+            <p>
+                &nbsp; Pick an Algorithm <br> <br>
+                &nbsp; Select a Start and Destination node <br> <br>
+                &nbsp; (Optional) Place wall and hill nodes <br> <br>
+                &nbsp; Press start to visualize! 
+            </p>
+        </div>
+        <div class="sidebar-right">
+            <p id="message-alg">
+                Pick an algorithm!
+            </p>
+            <p id="message-tile">
+                Pick a tile! <br> <br>
+            </p>
         </div>
         <div class="topbar-select">
             <table class="select-table">
                 <tr>
                     <td>
-                        <button type="button" class="buttonclass" id="alg" name="dji" onclick="setAlgorithm(0)">Djikstra's Algorithm</button>
+                        <button type="button" class="buttonclass" id="alg" name="dji" onclick="setAlgorithm(0, 'A great algorithm. Guarantees the shortest path should it exist, and can work with unequal weight edges.')">Djikstra's Algorithm</button>
                     </td>
                     <td>
-                        <button type="button" class="buttonclass" id="alg" name="bre" onclick="setAlgorithm(1)">Breadth-First Search</button>
+                        <button type="button" class="buttonclass" id="alg" name="bre" onclick="setAlgorithm(1, 'A good search algorithm. Guarantees the shortest path should it exist, and all edges have the same weights.')">Breadth-First Search</button>
                     </td>
                     <td>
-                        <button type="button" class="buttonclass" id="alg" name="dep" onclick="setAlgorithm(2)">Depth-First Search</button>
+                        <button type="button" class="buttonclass" id="alg" name="dep" onclick="setAlgorithm(2, 'A poor search algorithm. Only guarantees a path if it exists. Makes no guarantees on its length.')">Depth-First Search</button>
                     </td>
                 </tr>
             </table>
             <table class="tile-table">
                 <tr>
                     <td>
-                        <button type="button" class="buttonclass" id="til" name="src" onclick="setTile(0)">Start</button>
+                        <button type="button" class="buttonclass" id="til" name="src" onclick="setTile(0, 'The starting node. The search will begin from here.')">Start</button>
                     </td>
                     <td>
-                        <button type="button" class="buttonclass" id="til" name="dst" onclick="setTile(1)">Destination</button>
+                        <button type="button" class="buttonclass" id="til" name="dst" onclick="setTile(1, 'The destination node. The search will end when a path to this node is found, if possible.')">Destination</button>
                     </td>
                     <td>
-                        <button type="button" class="buttonclass" id="til" name="wal" onclick="setTile(2)">Wall</button>
+                        <button type="button" class="buttonclass" id="til" name="wal" onclick="setTile(2, 'A wall node. These cannot be traversed.')">Wall</button>
                     </td>
                     <td>
-                        <button type="button" class="buttonclass" id="til" name="hil" onclick="setTile(3)">Hill</button>
+                        <button type="button" class="buttonclass" id="til" name="hil" onclick="setTile(3, 'A hill node. These can be traversed over, but at a much higher cost than regular nodes.')">Hill</button>
                     </td>
                 </tr>
             </table>
@@ -69,6 +77,5 @@
         </script>
         <script src="main.js">
         </script>
-
     </body>
 </html>
