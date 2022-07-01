@@ -85,6 +85,7 @@
 }
 
 .sidebar-left {
+  float: left;
   font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 25%; /* Set the width of the sidebar */
@@ -100,6 +101,7 @@
 }
 
 .sidebar-right {
+  float: right;
   font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 25%; /* Set the width of the sidebar */
