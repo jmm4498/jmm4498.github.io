@@ -17,6 +17,7 @@ var p_x; //holds previous x mouse coord; used for drag event
 var p_y; //holds previous y mouse coord; used for drag event
 var map = new Array(WIDTH); //2d array which represents the 'map'
 let HILLCOST = 15;
+let PATHCOLOR = 'rgb(201, 20, 187)';
 
 //queue of tiles to be drawn to the screen after the path is calculated
 var drawQueue = new Array(WIDTH * HEIGHT * 2); 
@@ -201,16 +202,33 @@ function neighbors(x, y) {
 
 /* 
 Parameters : x, y coordinate of a point
-Returns : Distance/cost from (x, y) to source
+Returns : cost from (x, y) to source
 */
-function getDistance(x, y) {
+function getCost(x, y) {
     let c = map[x][y];
 
     if(c == "h")
         return HILLCOST;
     return 1;
 }
+/*
+Parameters : x, y coordinate of a point
+Returns : Distance of x,y 
+*/
+function getDistance(x, y) {
+    let distance = Math.sqrt(((x - sx) * (x - sx)) + ((y - sy) * (y - sy)));
+    return distance;
+}  
 
+
+function calcColor(x, y, b) {
+    let d = getDistance(x, y);
+
+    let blue = b - (d * 5.5);
+    console.log(b);
+
+    return 'rgb(0, 255, ' + blue + ')'; 
+}
 
 
 /*
@@ -257,7 +275,7 @@ function bfs(x_1, y_1, x_2, y_2) {
                 if(x == sx && y == sy) {
                     addToDrawQueue(x, y, 'blue');
                 } else {
-                    addToDrawQueue(x, y, 'red');
+                    addToDrawQueue(x, y, calcColor(x, y, 255));
                 }
                 
                 prev[toAdd] = v;
@@ -313,7 +331,7 @@ function dfs(x_1, y_1, x_2, y_2) {
                 if(x == sx && y == sy) {
                     addToDrawQueue(x, y, 'blue');
                 } else {
-                    addToDrawQueue(x, y, 'red');
+                    addToDrawQueue(x, y, calcColor(x, y, 255));
                 }
                 visited[toAdd] = true;
                 prev[toAdd] = v;
@@ -371,7 +389,7 @@ function djikstra(x_1, y_1, x_2, y_2) {
 
             let toAdd = twoD_oneD(n[i][0], n[i][1]);
             if(map[x][y] != '|' && !visited[toAdd]){
-                let d = distance[v] + getDistance(x, y);
+                let d = distance[v] + getCost(x, y);
 
                 if(d < distance[toAdd]) {
                     distance[toAdd] = d;
@@ -382,7 +400,7 @@ function djikstra(x_1, y_1, x_2, y_2) {
                 if(x == sx && y == sy) {
                     addToDrawQueue(x, y, 'blue');
                 } else {
-                    addToDrawQueue(x, y, 'red');
+                    addToDrawQueue(x, y, calcColor(x, y, 255));
                 }
                 
                 prev[toAdd] = v;
@@ -410,8 +428,6 @@ function setTile(t, message) {
     setMessage(message, 'message-tile');
 }
 
-
-
 /*
 Draws a path to the map from the start tile to destination tile
 Parameters:
@@ -433,7 +449,7 @@ function backtrack(prev, sx, sy, dx, dy) {
 
         if(map[x][y] != 's' && map[x][y] != 'd') {
             //draw(x, y, 'green');
-          addToDrawQueue(x, y, 'green');
+          addToDrawQueue(x, y, PATHCOLOR);
         }
         p = prev[p];
     }
