@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="main.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title> Path Solving Algorithms: Visualized </title>
+    </head>
+    <body>
+        <div class="sidebar-select">
+            <select id="algtype">
+                <option value="0">Select an Algorithm:</option>
+                <option value="dji">Djikstra's Algorithm</option>
+                <option value="bre">Breadth-First Search</option>
+                <option value="dep">Depth-First Search</option>
+              </select>
+              <select id="tiletype">
+                  <option value="0">Select a tile:</option>
+                  <option value="src">Start</option>
+                  <option value="dst">Destination</option>
+                  <option value="wal">Wall</option>
+                  <option value="hil">Hill</option>
+              </select>
+              <table class="buttonsTable">
+                <tr>
+                    <td id="startCell">
+                        <button class="buttonclass" id="startButton">Start</button>
+                    </td>
+                    <td id="resetCell">
+                        <button class="buttonclass" id="resetButton">Reset</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="main">
+            <canvas id="canvas" width="700" height="700"  
+                title='Path finder'
+                onmousedown="mousedown=true;onEvent(event);" onmouseup="mousedown=false;"
+                onmousemove="onDrag(event);"
+                tabindex="0">
+            </canvas> 
+        </div>
+        <script src="queue.js">
+        </script>
+        <script src="main.js">
+        </script>
+
+    </body>
+</html>

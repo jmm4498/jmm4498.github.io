@@ -9,14 +9,19 @@ var selected_d = false;
 var alg_type = 0;
 var node_type = 0;
 var mousedown = false;
-var SRCCOLOR = 'rgb(0, 0, 255)';
-var DSTCOLOR = 'rgb(255, 255, 0)';
+var SRCCOLOR = 'rgb(173, 51, 255)';
+var DSTCOLOR = 'rgb(255, 102, 102)';
 var WALLCOLOR = 'rgb(0, 0 , 0)';
-var PATHCOLOR = 'rgb(201, 20, 187)';
+var PATHCOLOR = 'rgb(255, 204, 0)';
 var BASECOLOR = 'rgb(255, 255, 255)';
 var HILLCOLOR = 'rgb(186, 0, 255)';
 var VISITEDCOLOR = 'rgb(0, 255, 255)';
 var drawQueue = new Array();
+
+
+var errorMessage = document.getElementById("message-error");
+var algMessage = document.getElementById("message-alg");
+var nodeMessage = document.getElementById("message-node");
 
 function set_td(id, value, color) {
     let td = document.getElementById(id);
@@ -35,8 +40,14 @@ function reset_td(id) {
     set_td(id, 0, BASECOLOR);
 }
 
+function reset_all_td() {
+    for(var i = 0; i < ROW * COL; i++) {
+        reset_td(i);
+    }
+}
+
 function td_click(id) {
-    console.log(neighbors(id));
+
     if(node_type == 0) {
         if(selected_s) {
             reset_td(s_ID);
@@ -68,6 +79,10 @@ function fill(id) {
     }
 }
 
+function setMsg(message) {
+    document.getElementById('message').innerHTML = message;
+}
+
 function calcColor() {
     let blue = 255 - (steps * 0.4);
     let red = 0 + (steps * 0.4);
@@ -82,7 +97,7 @@ function create_td(id) {
     td.setAttribute('onmousemove', "fill(" + id + ")");
     td.setAttribute('onmousedown', "mousedown=true;");
     td.setAttribute('onmouseup', "mousedown=false;");
-   // td.innerHTML = id; /** for debugging. Shows ID in each node on screen */
+   // td.HTML = id; /** for debugging. Shows ID in each node on screen */
     return td;
 }
 
@@ -137,6 +152,7 @@ function backtrack(prev) {
         drawQueue.push(new Array(c, "v", PATHCOLOR));
         c = prev[c];
     }
+    drawQueue.push(new Array(d_ID, "v", DSTCOLOR));
 }
 
 function getCost(id) {
@@ -176,7 +192,6 @@ function djikstra() {
     while(!queue.isEmpty()) {
         steps++;
         let n_id = queue.dequeue().element;
-        console.log(n_id);
         if(n_id == d_ID) {
             return [true, prev];
         }
@@ -193,7 +208,10 @@ function djikstra() {
                 }
 
                 prev[n[i]] = n_id;
-                set_td(n[i], 'v', 'white');
+
+                if(n[i] != d_ID){
+                    set_td(n[i], 'v', 'white');
+                }
                 queue.enqueue(n[i], distance[n[i]]);
                 drawQueue.push(new Array(n[i], "v", calcColor()));
             }
@@ -223,7 +241,9 @@ function bfs() {
                 queue.push(n[i]);
                 prev[n[i]] = n_id;
  
-                set_td(n[i], 'v', 'white');
+                if(n[i] != d_ID){
+                    set_td(n[i], 'v', 'white');
+                }
         
                 drawQueue.push(new Array(n[i], "v", calcColor()));
             }
@@ -254,7 +274,9 @@ function dfs() {
                 stack.push(n[i]);
 
                 prev[n[i]] = n_id;
-                set_td(n[i], 'v', 'white');
+                if(n[i] != d_ID){
+                    set_td(n[i], 'v', 'white');
+                }
                 drawQueue.push(new Array(n[i], "v", calcColor()));
             }
         }
@@ -262,20 +284,45 @@ function dfs() {
     return [false, new Array(0)];
 }
 
-function start() {
-    var ret = [false, new Array(0)];
-    if(alg_type == 0) {
-        ret = djikstra();
-        console.log(ret);
-    } else if(alg_type == 1) {
-        ret = bfs();
-    } else if (alg_type == 2) {
-        ret = dfs();
-    }
+function reset() {
     steps = 0;
-    if(ret[0]) {
-        backtrack(ret[1]);
-        drawWithQueue();
+    selected_s = false;
+    selected_d = false;
+    
+    reset_all_td();
+    setMsg(' ');
+    document.getElementById("message-error").innerHTML = ' ';
+    drawQueue = new Array();
+}
+
+
+function start() {
+
+    var ret = [false, new Array(0)];
+    var erMsg = ' '; 
+    if(!selected_s) {
+        erMsg += 'You need to select a starting node! ';
+    }
+    else if(!selected_d) {
+        erMsg += 'You need to select a destination node!';
+    }
+    if(selected_s && selected_d) {
+        erMsg = ' ';
+        document.getElementById("message-error").innerHTML = erMsg;
+        if(alg_type == 0) {
+            ret = djikstra();
+        } else if(alg_type == 1) {
+            ret = bfs();
+        } else if (alg_type == 2) {
+            ret = dfs();
+        }
+        steps = 0;
+        if(ret[0]) {
+            backtrack(ret[1]);
+            drawWithQueue();
+        }
+    } else {
+        document.getElementById("message-error").innerHTML = erMsg;
     }
  }
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="main.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title> Path Solving Algorithms: Visualized </title>
+    </head>
+    <body>
+        <div class="body-flex">
+        <div class="topbar-select">
+              <table class="buttonsTable">
+                <tr>
+                    <td id="startCell">
+                        <button class="buttonclass" id="startButton">Start</button>
+                    </td>
+                    <td id="resetCell">
+                        <button class="buttonclass" id="resetButton">Reset</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="page-content">
+            <div class="sidebar-left">
+                <table class="select-table">
+                    <caption>Algorithms</caption>
+                    <tr>
+                        <td>
+                            <button type="button" class="buttonclass" id="alg" name="dji" onclick="setAlgorithm(0, 'A great algorithm. Guarantees the shortest path should it exist, and can work with unequal weight edges.')">Djikstra's Algorithm</button>
+                        </td>
+                        <td>
+                            <button type="button" class="buttonclass" id="alg" name="bre" onclick="setAlgorithm(1, 'A good search algorithm. Guarantees the shortest path should it exist, and all edges have the same weights.')">Breadth-First Search</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="button" class="buttonclass" id="alg" name="dep" onclick="setAlgorithm(2, 'A poor search algorithm. Only guarantees a path if it exists. Makes no guarantees on its length.')">Depth-First Search</button>
+                        </td>
+                    </tr>
+                </table>
+                <table class="tile-table">
+                    <caption>Nodes</caption>
+                    <tr>
+                        <td>
+                            <button type="button" class="buttonclass" id="til" name="src" onclick="setTile(0, 'The starting node. The search will begin from here.')">Start</button>
+                        </td>
+                        <td>
+                            <button type="button" class="buttonclass" id="til" name="dst" onclick="setTile(1, 'The destination node. The search will end when a path to this node is found, if possible.')">Destination</button>
+                        </td>
+                        <td>
+                            <button type="button" class="buttonclass" id="til" name="wal" onclick="setTile(2, 'A wall node. These cannot be traversed. Click and drag to place multiple walls more easily.')">Wall</button>
+                        </td>
+                        <td>
+                            <button type="button" class="buttonclass" id="til" name="hil" onclick="setTile(3, 'A hill node. These can be traversed over, but at a much higher cost than regular nodes.')">Hill</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="sidebar-right">
+                <p id="message-alg">
+                    Pick an algorithm!
+                </p>
+                <p id="message-tile">
+                    Pick a tile! <br> <br>
+                </p>
+            </div>
+            <div class="main">
+                <canvas id="canvas" width="700" height="700"  
+                    title='Path finder'
+                    onmousedown="mousedown=true;onEvent(event);" onmouseup="mousedown=false;"
+                    onmousemove="onDrag(event);"
+                    tabindex="0">
+                </canvas> 
+            </div>
+        </div>
+        </div>
+        <script src="queue.js">
+        </script>
+        <script src="main.js">
+        </script>
+    </body>
+</html>
