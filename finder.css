@@ -26,8 +26,8 @@ td {
     cursor: pointer;
     display: inline-block;
     font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
-    font-size: 13px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 500;
     line-height: 1.15385;
     margin: 0;
     outline: none;
@@ -69,6 +69,6 @@ td {
 p {
     font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.15385;
 }

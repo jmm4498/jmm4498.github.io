@@ -1,5 +1,5 @@
 var ROW = 20;
-var COL = 45;
+var COL = 60;
 var s_ID;
 var d_ID;
 var speed = 0;
@@ -14,14 +14,9 @@ var DSTCOLOR = 'rgb(255, 102, 102)';
 var WALLCOLOR = 'rgb(0, 0 , 0)';
 var PATHCOLOR = 'rgb(255, 204, 0)';
 var BASECOLOR = 'rgb(255, 255, 255)';
-var HILLCOLOR = 'rgb(186, 0, 255)';
+var HILLCOLOR = 'rgb(102, 153, 153)';
 var VISITEDCOLOR = 'rgb(0, 255, 255)';
 var drawQueue = new Array();
-
-
-var errorMessage = document.getElementById("message-error");
-var algMessage = document.getElementById("message-alg");
-var nodeMessage = document.getElementById("message-node");
 
 function set_td(id, value, color) {
     let td = document.getElementById(id);
@@ -77,10 +72,6 @@ function fill(id) {
             set_td(id, 'h', HILLCOLOR);
         }
     }
-}
-
-function setMsg(message) {
-    document.getElementById('message').innerHTML = message;
 }
 
 function calcColor() {
@@ -290,8 +281,6 @@ function reset() {
     selected_d = false;
     
     reset_all_td();
-    setMsg(' ');
-    document.getElementById("message-error").innerHTML = ' ';
     drawQueue = new Array();
 }
 
@@ -299,16 +288,8 @@ function reset() {
 function start() {
 
     var ret = [false, new Array(0)];
-    var erMsg = ' '; 
-    if(!selected_s) {
-        erMsg += 'You need to select a starting node! ';
-    }
-    else if(!selected_d) {
-        erMsg += 'You need to select a destination node!';
-    }
+
     if(selected_s && selected_d) {
-        erMsg = ' ';
-        document.getElementById("message-error").innerHTML = erMsg;
         if(alg_type == 0) {
             ret = djikstra();
         } else if(alg_type == 1) {
@@ -321,8 +302,6 @@ function start() {
             backtrack(ret[1]);
             drawWithQueue();
         }
-    } else {
-        document.getElementById("message-error").innerHTML = erMsg;
     }
  }
 
