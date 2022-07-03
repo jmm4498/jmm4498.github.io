@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="finder.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title> Path Solving Algorithms: Visualized </title>
+    </head>
+    <body>
+        <div class="topbar-select">
+            <table class="selection-table">
+                <tr>
+                    <td>
+                        <button type="button" class="buttonclass" id="alg" name="dji" onclick="alg_type=0">Djikstra's Algorithm</button>
+                    </td>
+                    <td>
+                        <button type="button" class="buttonclass" id="alg" name="bre" onclick="alg_type=1">Breadth-First Search</button>
+                    </td>
+                    <td>
+                        <button type="button" class="buttonclass" id="alg" name="dep" onclick="alg_type=2">Depth-First Search</button>
+                    </td>
+                    <td>
+                        <button type="button" class="buttonclass" id="til" name="src" onclick="node_type=0">Start Node</button>
+                    </td>
+                    <td>
+                        <button type="button" class="buttonclass" id="til" name="dst" onclick="node_type=1">Destination Node</button>
+                    </td>
+                    <td>
+                        <button type="button" class="buttonclass" id="til" name="wal" onclick="node_type=2">Wall Node</button>
+                    </td>
+                    <td>
+                        <button type="button" class="buttonclass" id="til" name="hil" onclick="node_type=3">Hill Node</button>
+                    </td>
+                </tr>
+            </table>
+            <table class="buttons-table">
+                <tr>
+                    <td id="startCell">
+                        <button class="buttonclass" id="startButton">Search!</button>
+                    </td>
+                    <td id="resetCell">
+                        <button class="buttonclass" id="resetButton" onclick="reset()">Reset!</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="main-table" id="main-table">
+            <script src="queue.js"></script>
+            <script src="finder.js"></script>
+        </div>
+    </body>
+</html>
