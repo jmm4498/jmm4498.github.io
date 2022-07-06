@@ -1,7 +1,9 @@
-var ROW = 20;
+var ROW = 30;
 var COL = 60;
 var s_ID;
 var d_ID;
+var lastButtonIDNode;
+var lastButtonIDAlg;
 var speed = 0;
 var steps = 0;
 var selected_s = false;
@@ -16,6 +18,10 @@ var PATHCOLOR = 'rgb(255, 204, 0)';
 var BASECOLOR = 'rgb(255, 255, 255)';
 var HILLCOLOR = 'rgb(102, 153, 153)';
 var VISITEDCOLOR = 'rgb(0, 255, 255)';
+
+var HIGHLIGHTBUTTONCOLOR = '#7532a8';
+var DEFAULTBUTTONCOLOR = '#0a6bff';
+
 var drawQueue = new Array();
 
 function set_td(id, value, color) {
@@ -41,8 +47,27 @@ function reset_all_td() {
     }
 }
 
-function td_click(id) {
+function highlightButton(toHighlight, type) {
+    let highlight = document.getElementById(toHighlight);
+    highlight.style.backgroundColor = HIGHLIGHTBUTTONCOLOR;
 
+    var restore;
+    if(type == 0) { //node type
+        if(lastButtonIDNode) {
+            restore = document.getElementById(lastButtonIDNode);
+            restore.style.backgroundColor = DEFAULTBUTTONCOLOR;
+        }
+        lastButtonIDNode = toHighlight;    
+    } else { //alg type
+        if(lastButtonIDAlg) {
+            restore = document.getElementById(lastButtonIDAlg);
+            restore.style.backgroundColor = DEFAULTBUTTONCOLOR;
+        }
+        lastButtonIDAlg = toHighlight;
+    }
+}
+
+function td_click(id) {
     if(node_type == 0) {
         if(selected_s) {
             reset_td(s_ID);
