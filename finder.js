@@ -181,6 +181,15 @@ function getCost(id) {
     return 1;
 }
 
+function taxiDistance(id) {
+    let x1 = id % COL;
+    let y1 = id / COL;
+    let x2 = d_ID % COL;
+    let y2 = d_ID / COL;
+    
+    return Math.abs((x1 - x2) + (y1 - y2));
+}
+
 async function drawWithQueue() {
     for(var i = 0; i < drawQueue.length; i++) {
         let id = drawQueue[i][0];
@@ -267,6 +276,51 @@ function bfs() {
     }
     return [false, new Array(0)];
 }
+
+// function astar() {
+//     const prev = new Array();
+//     const queue = new PriorityQueue();
+//     const distance = new Array(ROW * COL);
+    
+//     queue.push(s_ID);
+
+//     for(var i = 0; i < ROW * COL; i++) {
+//         distance[i] = Number.MAX_VALUE;
+//     }
+
+//     distance[s_ID] = 0;
+//     queue.enqueue(s_ID, 0);
+
+//     while(!queue.isEmpty()) {
+//         steps++;
+//         let n_id = queue.dequeue().element;
+//         if(n_id == d_ID) {
+//             return [true, prev];
+//         }
+
+//         let n = neighbors(n_id);
+
+//         for(var i = 0; i < n.length; i++) {
+//             let toAdd = document.getElementById(n[i]);
+//             if(getValue(toAdd) != "w" && getValue(toAdd) != "v") {
+//                 let d = distance[n_id] + getCost(toAdd);
+
+//                 if(d < distance[n[i]]) {
+//                     distance[n[i]] = d;
+//                 }
+
+//                 prev[n[i]] = n_id;
+
+//                 if(n[i] != d_ID){
+//                     set_td(n[i], 'v', 'white');
+//                 }
+//                 queue.enqueue(n[i], distance[n[i]]);
+//                 drawQueue.push(new Array(n[i], "v", calcColor()));
+//             }
+//         }
+//     }
+//     return [false, new Array(0)];
+// }
 
 function dfs() {
     const prev = new Array();
