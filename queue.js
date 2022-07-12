@@ -53,6 +53,14 @@ enqueue(element, priority)
     }
 }
 
+
+contains(id) {
+    for(var i = 0; i < this.items.length; i++) {
+        if(this.items[i].element == id)
+            return true;
+    }
+    return false;
+}
 // dequeue method to remove
 // element from the queue
 dequeue()

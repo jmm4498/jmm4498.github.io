@@ -181,7 +181,7 @@ function getCost(id) {
     return 1;
 }
 
-function taxiDistance(id) {
+function heuristic(id) {
     let x1 = id % COL;
     let y1 = id / COL;
     let x2 = d_ID % COL;
@@ -277,50 +277,52 @@ function bfs() {
     return [false, new Array(0)];
 }
 
-// function astar() {
-//     const prev = new Array();
-//     const queue = new PriorityQueue();
-//     const distance = new Array(ROW * COL);
+
+/* 
+    A* implementation using algorithm found on:
+    https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
+*/
+function astar() {
+    const prev = new Array();
+    const queue = new PriorityQueue();
+    const gScore = new Array(COL * ROW).fill(Number.MAX_VALUE);
+    gScore[s_ID] = 0;
+
+    const fScore = new Array(COL * ROW).fill(Number.MAX_VALUE);
+    fScore[s_ID] = heuristic(s_ID);
+
+    queue.enqueue(s_ID, gScore[s_ID]);
+
+    while(!queue.isEmpty()) {
+        steps++;
+        let cur = queue.dequeue().element;
+
+        if(cur == d_ID) {
+            return [true, prev];
+        }
+
+        let n = neighbors(cur);
+
+        for(var i = 0; i < n.length; i++) {
+            let toAdd = document.getElementById(n[i]);
+            if(getValue(toAdd) != 'w') {
+                let t_gScore = gScore[cur] + getCost(toAdd);
+
+                if(t_gScore < gScore[n[i]]) {
+                    prev[n[i]] = cur;
+                    gScore[n[i]] = t_gScore;
+                    fScore[n[i]] = t_gScore + heuristic(n[i]);
     
-//     queue.push(s_ID);
-
-//     for(var i = 0; i < ROW * COL; i++) {
-//         distance[i] = Number.MAX_VALUE;
-//     }
-
-//     distance[s_ID] = 0;
-//     queue.enqueue(s_ID, 0);
-
-//     while(!queue.isEmpty()) {
-//         steps++;
-//         let n_id = queue.dequeue().element;
-//         if(n_id == d_ID) {
-//             return [true, prev];
-//         }
-
-//         let n = neighbors(n_id);
-
-//         for(var i = 0; i < n.length; i++) {
-//             let toAdd = document.getElementById(n[i]);
-//             if(getValue(toAdd) != "w" && getValue(toAdd) != "v") {
-//                 let d = distance[n_id] + getCost(toAdd);
-
-//                 if(d < distance[n[i]]) {
-//                     distance[n[i]] = d;
-//                 }
-
-//                 prev[n[i]] = n_id;
-
-//                 if(n[i] != d_ID){
-//                     set_td(n[i], 'v', 'white');
-//                 }
-//                 queue.enqueue(n[i], distance[n[i]]);
-//                 drawQueue.push(new Array(n[i], "v", calcColor()));
-//             }
-//         }
-//     }
-//     return [false, new Array(0)];
-// }
+                    if(!queue.contains(n[i])) {
+                        queue.enqueue(n[i], fScore[n[i]]);
+                    }
+                    drawQueue.push(new Array(n[i], "v", calcColor()));
+                }
+            }
+        }
+    }
+    return [false, new Array(0)];
+}
 
 function dfs() {
     const prev = new Array();
@@ -375,6 +377,9 @@ function start() {
             ret = bfs();
         } else if (alg_type == 2) {
             ret = dfs();
+        } else if (alg_type == 3) {
+            ret = astar();
+            console.log(ret);
         }
         steps = 0;
         if(ret[0]) {
