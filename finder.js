@@ -281,6 +281,7 @@ function bfs() {
 /* 
     A* implementation using algorithm found on:
     https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
+    Uses Manhatten/Taxicab Distance from destination node for heuristic function
 */
 function astar() {
     const prev = new Array();
